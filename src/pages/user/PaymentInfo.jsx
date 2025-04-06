@@ -24,7 +24,7 @@ function PaymentInfo({ setPaymentDone, confirmOrder }) {
     , 0);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/create-order", {
+      const response = await axios.post("https://foodhubapi-1.onrender.com/api/create-order", {
         amount: totalAmount,
         currency: "INR",
       });
@@ -44,7 +44,7 @@ function PaymentInfo({ setPaymentDone, confirmOrder }) {
         description: "Order Payment",
         order_id: order.id,
         handler: async function (response) {
-          const verifyRes = await axios.post("http://localhost:5000/api/verify-payment", response);
+          const verifyRes = await axios.post("https://foodhubapi-1.onrender.com/api/verify-payment", response);
           if (verifyRes.data.success) {
             setPaymentDone(true);
             alert("Payment Successful!");
