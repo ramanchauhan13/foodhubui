@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+.custom-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Change Swiper navigation button color to orange */
+.swiper-button-next, .swiper-button-prev {
+  color: orange !important;
+}
+
+
+body{
+  background-color:rgb(229, 228, 228);
+ /* background-color: white; */
+  margin:0;
+  padding:0;
+}
+  
+  /* Hide scrollbar for Firefox */
+  /* .custom-scrollbar {
+    scrollbar-width: none;
+  } */
+
+  
