@@ -40,7 +40,7 @@ function Address() {
 
     try {
       const response = await axios.patch(
-        `http://localhost:5000/api/user/${userId}/address`,
+        `https://foodhubapi-1.onrender.com/api/user/${userId}/address`,
         form
       );
       if (response.status === 200) {
@@ -64,7 +64,7 @@ function Address() {
 
   const fetchAddress = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/user/${userId}/address`);
+      const response = await axios.get(`https://foodhubapi-1.onrender.com/api/user/${userId}/address`);
       if (response.status === 200 && response.data.address) {
         setAddress(response.data.address);
         setIsEditable(false);
