@@ -3,7 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const API_BASE_URL = "http://localhost:5000/api/admin/restaurant";
+const API_BASE_URL = "https://foodhubapi-1.onrender.com/api/admin/restaurant";
 
 const MenuManagement = ({ adminId }) => {
   const [restaurant, setRestaurant] = useState(null);

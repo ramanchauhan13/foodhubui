@@ -33,7 +33,7 @@ const UserSignup = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/user/signup", formData);
+      const response = await axios.post("https://foodhubapi-1.onrender.com/api/user/signup", formData);
       alert(response.data.message);
       navigate("/login");
     } catch (err) {

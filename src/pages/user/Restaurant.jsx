@@ -21,7 +21,7 @@ const Restaurant = () => {
   useEffect(() => {
     if (!restaurant) {
       // Fetch restaurant details if opened via direct URL
-      axios.get(`http://localhost:5000/api/home/${name}`)
+      axios.get(`https://foodhubapi-1.onrender.com/api/home/${name}`)
         .then((response) => setRestaurant(response.data))
         .catch((error) => {
           console.error("Error fetching restaurant:", error);

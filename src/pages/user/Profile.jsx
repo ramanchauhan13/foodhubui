@@ -36,7 +36,7 @@ function Profile() {
     const updatedField = { [key]: formData[key] };
 
     try {
-      const response = await axios.patch(`http://localhost:5000/api/user/${user.id}/profile`, updatedField);
+      const response = await axios.patch(`https://foodhubapi-1.onrender.com/api/user/${user.id}/profile`, updatedField);
       if (response.status === 200) {
         const updatedUser = { ...user, ...updatedField };
         localStorage.setItem("user", JSON.stringify(updatedUser));

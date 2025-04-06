@@ -30,7 +30,7 @@ const AdminSignup = () => {
     setError("");
 
     try {
-      const response = await axios.post("http://localhost:5000/api/admin/signup", formData);
+      const response = await axios.post("https://foodhubapi-1.onrender.com/api/admin/signup", formData);
       alert(response.data.message);
       navigate("/login");
     } catch (err) {

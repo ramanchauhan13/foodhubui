@@ -34,7 +34,7 @@ const Cart = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:5000/api/place-order",
+        "https://foodhubapi-1.onrender.com/api/place-order",
         { cart },
         {
           headers: { Authorization: `Bearer ${user.token}` },

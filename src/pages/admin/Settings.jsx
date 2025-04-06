@@ -20,7 +20,7 @@ function Settings() {
         setUser(storedUser);
         setFormData(storedUser);
 
-        const res = await axios.get(`http://localhost:5000/api/admin/${id}/settings`);
+        const res = await axios.get(`https://foodhubapi-1.onrender.com/api/admin/${id}/settings`);
         setUser(res.data);
         setFormData(res.data);
         setImage(res.data.imageUrl || defaultRestaurant);
@@ -53,7 +53,7 @@ function Settings() {
 
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/admin/${id}/settings`,
+        `https://foodhubapi-1.onrender.com/api/admin/${id}/settings`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
@@ -77,7 +77,7 @@ function Settings() {
     const updatedField = { [key]: formData[key] };
 
     try {
-      await axios.patch(`http://localhost:5000/api/admin/${id}/settings`, updatedField);
+      await axios.patch(`https://foodhubapi-1.onrender.com/api/admin/${id}/settings`, updatedField);
       setUser({ ...user, ...updatedField });
       localStorage.setItem("user", JSON.stringify({ ...user, ...updatedField }));
       setEditableFields({ ...editableFields, [key]: false });

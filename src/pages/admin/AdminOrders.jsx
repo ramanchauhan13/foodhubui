@@ -15,7 +15,7 @@ const Orders = ({ adminId }) => {
       }
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/admin/${adminId}/orders`
+          `https://foodhubapi-1.onrender.com/api/admin/${adminId}/orders`
         );
         const sortedOrders = response.data.sort(
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
@@ -35,7 +35,7 @@ const Orders = ({ adminId }) => {
   const updateOrderStatus = async (orderId, restaurantId, newStatus) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/admin/orders/${orderId}/status`,
+        `https://foodhubapi-1.onrender.com/api/admin/orders/${orderId}/status`,
         { status: newStatus, restaurantId }
       );
 

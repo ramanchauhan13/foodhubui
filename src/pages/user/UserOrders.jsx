@@ -15,7 +15,7 @@ const UserOrders = () => {
     const fetchOrders = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/user/${id}/orders`
+          `https://foodhubapi-1.onrender.com/api/user/${id}/orders`
         );
   
         const allLiveOrders = response.data.liveOrders || [];
@@ -49,7 +49,7 @@ const UserOrders = () => {
   // Cancel Order
   const cancelOrder = async (orderId) => {
     try {
-      await axios.put(`http://localhost:5000/api/orders/${orderId}/cancel`);
+      await axios.put(`https://foodhubapi-1.onrender.com/api/orders/${orderId}/cancel`);
       toast.success("Order cancelled successfully!");
       setLiveOrders((prev) => prev.filter((order) => order._id !== orderId));
     } catch (error) {
