@@ -20,7 +20,7 @@ function Settings() {
         setUser(storedUser);
         setFormData(storedUser);
 
-        const res = await axios.get(`http://localhost:5000/api/admin/${id}/settings`);
+        const res = await axios.get(`https://foodhubapi-1.onrender.com/api/admin/${id}/settings`);
         setUser(res.data);
         setFormData(res.data);
         setImage(res.data.imageUrl || defaultRestaurant);
