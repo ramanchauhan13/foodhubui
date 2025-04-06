@@ -17,7 +17,7 @@ function Menu() {
     const fetchRestaurants = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:5000/api/home");
+        const response = await axios.get("https://foodhubapi-1.onrender.com/api/home");
         if (Array.isArray(response.data)) {
           setRestaurants(response.data);
         } else {
