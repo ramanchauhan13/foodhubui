@@ -133,7 +133,7 @@ function Content({ restaurant = [] }) {
         </Swiper>
       </div>
 
-      <div className="mx-0 sm:mx-15">
+      <div className="mx-5 sm:mx-15">
       <Swiper
   modules={[Navigation, Autoplay]}
   navigation={false}
