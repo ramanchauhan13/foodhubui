@@ -86,7 +86,7 @@ function Content({ restaurant = [] }) {
             </h1>
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center h-40 w-40 sm:h-60 sm:w-60 cursor-pointer mx-auto"
+          <div className="flex flex-col items-center justify-center h-35 w-35 sm:h-60 sm:w-60 cursor-pointer mx-auto"
             onClick={() => handleSectionClick(item)}
           >
             <img
@@ -142,7 +142,7 @@ function Content({ restaurant = [] }) {
   spaceBetween={10}
   slidesPerView={3} // shows 3 per view in mobile
   breakpoints={{
-    320: { slidesPerView: 3, spaceBetween: 10 },
+    320: { slidesPerView: 4, spaceBetween: 10 },
     768: { slidesPerView: 4, spaceBetween: 20 },
     1024: { slidesPerView: 5, spaceBetween: 30 },
   }}
@@ -166,10 +166,10 @@ function Content({ restaurant = [] }) {
   modules={[Navigation, Autoplay]}
   pagination={{ clickable: true }}
   autoplay={{ delay: 2000, pauseOnMouseEnter: true }}
-  spaceBetween={10}
+  spaceBetween={1}
   slidesPerView={4}
   breakpoints={{
-    320: { slidesPerView: 2, spaceBetween: 10 },
+    320: { slidesPerView: 3, spaceBetween: 1 },
     768: { slidesPerView: 3, spaceBetween: 20 },
     1024: { slidesPerView: 4, spaceBetween: 30 },
   }}
@@ -179,14 +179,14 @@ function Content({ restaurant = [] }) {
             <SwiperSlide key={index}>
               <div
                 onClick={() => handleViewMenu(restaurant)}
-                className="border-15 sm:border-20 mx-5 my-5 h-[220px] sm:h-[300px] text-center bg-white border-white transition-transform duration-300 ease-in-out transform hover:scale-110 shadow-lg relative overflow-hidden rounded-lg"
+                className="border-12 sm:border-20 mx-2 sm:mx-5 my-5 h-[150px] sm:h-[300px] text-center bg-white border-white transition-transform duration-300 ease-in-out transform hover:scale-110 shadow-lg relative overflow-hidden rounded-lg"
               >
                 <img
                   src={restaurant.imageUrl || image1}
                   className="w-full h-full object-cover rounded-lg"
                   alt={restaurant.restaurantName}
                 />
-                <h1 className="absolute bottom-2 left-0 right-0 text-lg font-bold bg-orange-500 text-black sm:py-2 py-1">
+                <h1 className="absolute bottom-2 left-0 right-0 text-lg font-bold bg-orange-500 text-black sm:py-2">
                   {restaurant.restaurantName || "Unnamed Restaurant"}
                 </h1>
               </div>
