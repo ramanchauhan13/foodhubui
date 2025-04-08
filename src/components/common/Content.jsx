@@ -107,7 +107,7 @@ function Content({ restaurant = [] }) {
     <>
       <div className="bg-orange-500 w-full absolute mt-20 h-[35vh] sm:h-[70vh]"></div>
 
-      <div className="border-10 sm:border-[30px] mx-5 sm:mx-15 my-6 relative border-white sm-rounder-2xl bg-white h-[35vh] sm:h-[65vh]">
+      <div className="border-10 sm:border-[30px] mx-5 sm:mx-15 my-6 relative border-white sm-rounder-2xl bg-white h-[30vh] sm:h-[65vh]">
         <Swiper
           modules={[Navigation, Autoplay]}
           pagination={{ clickable: true }}
