@@ -86,7 +86,7 @@ function Content({ restaurant = [] }) {
             </h1>
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center h-26 w-25 sm:h-60 sm:w-60 cursor-pointer"
+          <div className="flex flex-col items-center justify-center h-27 w-26 sm:h-60 sm:w-60 cursor-pointer"
             onClick={() => handleSectionClick(item)}
           >
             <img
@@ -133,7 +133,7 @@ function Content({ restaurant = [] }) {
         </Swiper>
       </div>
 
-      <div className="mx-0 sm:mx-15">
+      <div className="mx-0 border-2 sm:mx-15">
       <Swiper
   modules={[Navigation, Autoplay]}
   navigation={false}
