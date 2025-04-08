@@ -123,7 +123,7 @@ function Content({ restaurant = [] }) {
           }
         `}
       </style>
-      
+
       <div className="bg-orange-500 w-full absolute mt-20 h-[30vh] sm:h-[70vh]"></div>
 
       <div className="border-10 sm:border-[30px] mx-5 sm:mx-15 my-6 relative border-white sm-rounder-2xl bg-white h-[30vh] sm:h-[65vh]">
@@ -206,7 +206,7 @@ function Content({ restaurant = [] }) {
                   alt={restaurant.restaurantName}
                 />
                 <h1 className="absolute bottom-2 left-0 right-0 bg-orange-500 text-black sm:py-2 py-1 overflow-hidden">
-  <div className="whitespace-nowrap animate-marquee text-center sm:text-lg text-md sm:font-bold font-semibold px-2">
+  <div className="whitespace-nowrap text-center sm:text-lg text-md sm:font-bold font-semibold px-2 marquee">
     {restaurant.restaurantName || "Unnamed Restaurant"}
   </div>
 </h1>
