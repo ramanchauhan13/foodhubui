@@ -105,24 +105,27 @@ function Content({ restaurant = [] }) {
 
   return (
     <>
-    {/* Add this style tag just once */}
     <style>
-        {`
-          .marquee {
-            display: inline-block;
-            animation: scroll-left 6s linear infinite;
-          }
+  {`
+    .marquee {
+      will-change: transform;
+      animation: scroll-left 8s linear infinite;
+      white-space: nowrap;
+      display: inline-block;
+      padding-left: 100%; /* start outside the box */
+    }
 
-          @keyframes scroll-left {
-            0% {
-              transform: translateX(100%);
-            }
-            100% {
-              transform: translateX(-100%);
-            }
-          }
-        `}
-      </style>
+    @keyframes scroll-left {
+      0% {
+        transform: translateX(0%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+  `}
+</style>
+
 
       <div className="bg-orange-500 w-full absolute mt-20 h-[30vh] sm:h-[70vh]"></div>
 
@@ -206,8 +209,10 @@ function Content({ restaurant = [] }) {
                   alt={restaurant.restaurantName}
                 />
                 <h1 className="absolute bottom-2 left-0 right-0 bg-orange-500 text-black sm:py-2 py-1 overflow-hidden">
-  <div className="whitespace-nowrap text-center sm:text-lg text-md sm:font-bold font-semibold px-2 marquee">
-    {restaurant.restaurantName || "Unnamed Restaurant"}
+  <div className="relative w-full h-full">
+    <div className="absolute whitespace-nowrap text-center sm:text-lg text-md sm:font-bold font-semibold marquee">
+      {restaurant.restaurantName || "Unnamed Restaurant"}
+    </div>
   </div>
 </h1>
               </div>
