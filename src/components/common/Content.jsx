@@ -86,7 +86,7 @@ function Content({ restaurant = [] }) {
             </h1>
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center h-[200px] w-[200px] sm:h-[240px] sm:w-[240px] cursor-pointer mx-auto"
+          <div className="flex flex-col items-center justify-center h-40 w-40 sm:h-60 sm:w-60 cursor-pointer mx-auto"
             onClick={() => handleSectionClick(item)}
           >
             <img
@@ -94,7 +94,7 @@ function Content({ restaurant = [] }) {
               className="w-[80%] h-[80%] rounded-full  object-cover border-10 border-white hover:shadow-xl hover:scale-105 transition-transform duration-200 ease-in-out"
               alt={item}
             />
-            <h1 className="h-[8%] text-lg mt-2 font-bold text-black text-center">
+            <h1 className="mt-2 text-sm sm:text-lg font-bold text-black text-center break-words">
               {item}
             </h1>
           </div>
@@ -134,46 +134,47 @@ function Content({ restaurant = [] }) {
       </div>
 
       <div className="mx-0 sm:mx-15">
-        <Swiper
-          modules={[Navigation, Autoplay]}
-          navigation={false}
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 2000, pauseOnMouseEnter: true }}
-          spaceBetween={10}
-          slidesPerView={5}
-          breakpoints={{
-            320: { slidesPerView: 3, spaceBetween: 10 },
-            768: { slidesPerView: 3, spaceBetween: 20 },
-            1024: { slidesPerView: 5, spaceBetween: 30 },
-          }}
-          loop={true}
-        >
-          {renderSwiperSlides(uniqueSections, false)}
-        </Swiper>
+      <Swiper
+  modules={[Navigation, Autoplay]}
+  navigation={false}
+  pagination={{ clickable: true }}
+  autoplay={{ delay: 2000, pauseOnMouseEnter: true }}
+  spaceBetween={10}
+  slidesPerView={3} // shows 3 per view in mobile
+  breakpoints={{
+    320: { slidesPerView: 3, spaceBetween: 10 },
+    768: { slidesPerView: 4, spaceBetween: 20 },
+    1024: { slidesPerView: 5, spaceBetween: 30 },
+  }}
+  loop={true}
+>
+  {renderSwiperSlides(uniqueSections, false)}
+</Swiper>
       </div>
 
-      <div className="flex items-center justify-center my-6">
-        <hr className="flex-grow border-2 border-gray-500 mx-20" />
-        <span className="text-black text-2xl font-bold">
-          Favorite Restaurants
-        </span>
-        <hr className="flex-grow border-2 border-gray-500 mx-20" />
-      </div>
+      <div className="flex items-center justify-center my-6 px-4 flex-wrap sm:flex-nowrap">
+  <hr className="flex-grow border-2 border-gray-500 mx-4 sm:mx-20" />
+  <span className="text-black text-2xl font-bold whitespace-nowrap">
+    Favorite Restaurants
+  </span>
+  <hr className="flex-grow border-2 border-gray-500 mx-4 sm:mx-20" />
+</div>
+
 
       <div className="mx-0 sm:mx-15">
-        <Swiper
-          modules={[Navigation, Autoplay]}
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 2000, pauseOnMouseEnter: true }}
-          spaceBetween={10}
-          slidesPerView={4}
-          breakpoints={{
-            320: { slidesPerView: 2},
-            768: { slidesPerView: 3 },
-            1024: { slidesPerView: 4 },
-          }}
-          loop={true}
-        >
+      <Swiper
+  modules={[Navigation, Autoplay]}
+  pagination={{ clickable: true }}
+  autoplay={{ delay: 2000, pauseOnMouseEnter: true }}
+  spaceBetween={10}
+  slidesPerView={4}
+  breakpoints={{
+    320: { slidesPerView: 2, spaceBetween: 10 },
+    768: { slidesPerView: 3, spaceBetween: 20 },
+    1024: { slidesPerView: 4, spaceBetween: 30 },
+  }}
+  loop={true}
+>
           {restaurant.map((restaurant, index) => (
             <SwiperSlide key={index}>
               <div
