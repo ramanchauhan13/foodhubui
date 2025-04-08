@@ -86,7 +86,7 @@ function Content({ restaurant = [] }) {
             </h1>
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center h-35 w-35 sm:h-60 sm:w-60 cursor-pointer"
+          <div className="flex flex-col items-center justify-center h-30 w-30 sm:h-60 sm:w-60 cursor-pointer"
             onClick={() => handleSectionClick(item)}
           >
             <img
@@ -105,7 +105,7 @@ function Content({ restaurant = [] }) {
 
   return (
     <>
-      <div className="bg-orange-500 w-full absolute mt-20 h-[35vh] sm:h-[70vh]"></div>
+      <div className="bg-orange-500 w-full absolute mt-20 h-[30vh] sm:h-[70vh]"></div>
 
       <div className="border-10 sm:border-[30px] mx-5 sm:mx-15 my-6 relative border-white sm-rounder-2xl bg-white h-[30vh] sm:h-[65vh]">
         <Swiper
