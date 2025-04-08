@@ -179,7 +179,7 @@ function Content({ restaurant = [] }) {
             <SwiperSlide key={index}>
               <div
                 onClick={() => handleViewMenu(restaurant)}
-                className="border-10 sm:border-20 mx-2 sm:mx-5 my-5 h-[150px] sm:h-[300px] text-center bg-white border-white transition-transform duration-300 ease-in-out transform hover:scale-110 shadow-lg relative overflow-hidden rounded-lg"
+                className="border-8 sm:border-20 mx-2 sm:mx-5 my-5 h-[150px] sm:h-[300px] text-center bg-white border-white transition-transform duration-300 ease-in-out transform hover:scale-110 shadow-lg relative overflow-hidden rounded-lg"
               >
                 <img
                   src={restaurant.imageUrl || image1}
