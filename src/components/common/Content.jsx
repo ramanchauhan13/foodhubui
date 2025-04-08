@@ -105,28 +105,6 @@ function Content({ restaurant = [] }) {
 
   return (
     <>
-    <style>
-  {`
-    .marquee {
-      will-change: transform;
-      animation: scroll-left 8s linear infinite;
-      white-space: nowrap;
-      display: inline-block;
-      padding-left: 100%; /* start outside the box */
-    }
-
-    @keyframes scroll-left {
-      0% {
-        transform: translateX(0%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
-    }
-  `}
-</style>
-
-
       <div className="bg-orange-500 w-full absolute mt-20 h-[30vh] sm:h-[70vh]"></div>
 
       <div className="border-10 sm:border-[30px] mx-5 sm:mx-15 my-6 relative border-white sm-rounder-2xl bg-white h-[30vh] sm:h-[65vh]">
@@ -208,13 +186,9 @@ function Content({ restaurant = [] }) {
                   className="w-full h-full object-cover rounded-lg"
                   alt={restaurant.restaurantName}
                 />
-                <h1 className="absolute bottom-2 left-0 right-0 bg-orange-500 text-black sm:py-2 py-1 overflow-hidden">
-  <div className="relative w-full h-full">
-    <div className="absolute whitespace-nowrap text-center sm:text-lg text-md sm:font-bold font-semibold marquee">
-      {restaurant.restaurantName || "Unnamed Restaurant"}
-    </div>
-  </div>
-</h1>
+                <h1 className="absolute bottom-2 left-0 right-0 sm:text-lg text-md sm:font-bold font-semibold bg-orange-500 text-black sm:py-2">
+                  {restaurant.restaurantName || "Unnamed Restaurant"}
+                </h1>
               </div>
             </SwiperSlide>
           ))}
