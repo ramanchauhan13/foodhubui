@@ -86,12 +86,12 @@ function Content({ restaurant = [] }) {
             </h1>
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center h-27 w-26 sm:h-60 sm:w-60 cursor-pointer"
+          <div className="flex flex-col items-center justify-center h-28 w-27 sm:h-60 sm:w-60 cursor-pointer"
             onClick={() => handleSectionClick(item)}
           >
             <img
               src={sectionImages[item] || image1}
-              className="w-[80%] h-[80%] rounded-full  object-cover border-7 sm:border-10 border-white hover:shadow-xl hover:scale-105 transition-transform duration-200 ease-in-out"
+              className="w-[80%] h-[80%] rounded-full  object-cover border-6 sm:border-10 border-white hover:shadow-xl hover:scale-105 transition-transform duration-200 ease-in-out"
               alt={item}
             />
             <h1 className="mt-2 w-[80%] truncate whitespace-nowrap overflow-hidden text-sm sm:text-lg font-bold text-black text-center break-words">
@@ -133,7 +133,7 @@ function Content({ restaurant = [] }) {
         </Swiper>
       </div>
 
-      <div className="mx-0 border-2 sm:mx-15">
+      <div className="mx-0 sm:mx-15">
       <Swiper
   modules={[Navigation, Autoplay]}
   navigation={false}
