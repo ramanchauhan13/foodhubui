@@ -60,14 +60,14 @@ function Menu() {
 
       {/* Blurred Background when Loading */}
       <div className={`${loading ? "blur-sm" : ""}`}>
-        <div className="bg-orange-500 text-white text-center py-2 text-lg font-semibold">
+        <div className="bg-orange-500 text-white text-center py-3 text-lg font-semibold">
           MENU
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10 mt-6 max-w-6xl mx-auto px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10 mt-6 max-w-6xl mx-auto px-6">
           {restaurants.map((restaurant) => (
             <div
               key={restaurant._id || restaurant.id}
-              className="bg-white w-full h-38 sm:h-60 shadow-md rounded-lg cursor-pointer"
+              className="bg-white w-full h-70 sm:h-60 shadow-md rounded-lg cursor-pointer"
               onClick={() => handleViewMenu(restaurant)}
             >
               <img
@@ -78,7 +78,7 @@ function Menu() {
                   e.target.src = image;
                 }}
               />
-              <div className="bg-orange-500 text-white text-center p-1 font-semibold">
+              <div className="bg-orange-500 text-white text-center text-lg p-2 uppercase font-semibold">
                 {restaurant.restaurantName}
               </div>
             </div>
