@@ -186,7 +186,7 @@ function Content({ restaurant = [] }) {
                   className="w-full h-full object-cover rounded-lg"
                   alt={restaurant.restaurantName}
                 />
-                <h1 className="absolute bottom-2 left-0 right-0 text-lg font-bold bg-orange-500 text-black sm:py-2">
+                <h1 className="absolute bottom-2 left-0 right-0 text-lg sm:font-bold font-semibold bg-orange-500 text-black sm:py-2">
                   {restaurant.restaurantName || "Unnamed Restaurant"}
                 </h1>
               </div>
