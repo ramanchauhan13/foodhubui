@@ -86,8 +86,7 @@ function Content({ restaurant = [] }) {
             </h1>
           </div>
         ) : (
-          <div
-            className="flex flex-col items-center justify-center h-60 w-60 cursor-pointer"
+          <div className="flex flex-col items-center justify-center h-[200px] w-[200px] sm:h-[240px] sm:w-[240px] cursor-pointer mx-auto"
             onClick={() => handleSectionClick(item)}
           >
             <img
@@ -111,7 +110,6 @@ function Content({ restaurant = [] }) {
       <div className="border-30 mx-15 my-6 relative border-white rounded-2xl bg-white h-[65vh]">
         <Swiper
           modules={[Navigation, Autoplay]}
-          navigation
           pagination={{ clickable: true }}
           autoplay={{ delay: 2000 }}
           loop={true}
@@ -144,8 +142,8 @@ function Content({ restaurant = [] }) {
           spaceBetween={30}
           slidesPerView={5}
           breakpoints={{
-            320: { slidesPerView: 1 },
-            768: { slidesPerView: 2 },
+            320: { slidesPerView: 2 },
+            768: { slidesPerView: 3 },
             1024: { slidesPerView: 5 },
           }}
           loop={true}
@@ -165,13 +163,12 @@ function Content({ restaurant = [] }) {
       <div className="mx-15">
         <Swiper
           modules={[Navigation, Autoplay]}
-          navigation
           pagination={{ clickable: true }}
           autoplay={{ delay: 2000, pauseOnMouseEnter: true }}
           spaceBetween={10}
           slidesPerView={4}
           breakpoints={{
-            320: { slidesPerView: 1 },
+            320: { slidesPerView: 2 },
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 4 },
           }}
