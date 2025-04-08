@@ -105,6 +105,25 @@ function Content({ restaurant = [] }) {
 
   return (
     <>
+    {/* Add this style tag just once */}
+    <style>
+        {`
+          .marquee {
+            display: inline-block;
+            animation: scroll-left 6s linear infinite;
+          }
+
+          @keyframes scroll-left {
+            0% {
+              transform: translateX(100%);
+            }
+            100% {
+              transform: translateX(-100%);
+            }
+          }
+        `}
+      </style>
+      
       <div className="bg-orange-500 w-full absolute mt-20 h-[30vh] sm:h-[70vh]"></div>
 
       <div className="border-10 sm:border-[30px] mx-5 sm:mx-15 my-6 relative border-white sm-rounder-2xl bg-white h-[30vh] sm:h-[65vh]">
