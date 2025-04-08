@@ -44,7 +44,7 @@ const UserSignup = () => {
   };
 
   return (
-    <div className="relative flex justify-center items-center my-15 sm:my-0 sm:h-screen px-4">
+    <div className="relative flex justify-center items-center my-16 sm:my-0 sm:h-screen px-6">
   {loading && (
     <div className="absolute inset-0 flex justify-center items-center  backdrop-blur-sm z-50">
       <Loader />
