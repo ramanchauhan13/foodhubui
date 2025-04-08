@@ -133,7 +133,7 @@ function Content({ restaurant = [] }) {
         </Swiper>
       </div>
 
-      <div className="mx-15">
+      <div className="mx-0 sm:mx-15">
         <Swiper
           modules={[Navigation, Autoplay]}
           navigation={false}
@@ -142,7 +142,7 @@ function Content({ restaurant = [] }) {
           spaceBetween={30}
           slidesPerView={5}
           breakpoints={{
-            320: { slidesPerView: 2 },
+            320: { slidesPerView: 3 },
             768: { slidesPerView: 3 },
             1024: { slidesPerView: 5 },
           }}
