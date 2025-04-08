@@ -91,10 +91,10 @@ function Content({ restaurant = [] }) {
           >
             <img
               src={sectionImages[item] || image1}
-              className="w-[80%] h-[80%] rounded-full  object-cover border-10 border-white hover:shadow-xl hover:scale-105 transition-transform duration-200 ease-in-out"
+              className="w-[80%] h-[80%] rounded-full  object-cover border-7 sm:border-10 border-white hover:shadow-xl hover:scale-105 transition-transform duration-200 ease-in-out"
               alt={item}
             />
-            <h1 className="mt-2 text-sm sm:text-lg font-bold text-black text-center break-words">
+            <h1 className="mt-2 w-[80%] truncate whitespace-nowrap overflow-hidden text-sm sm:text-lg font-bold text-black text-center break-words">
               {item}
             </h1>
           </div>
@@ -107,7 +107,7 @@ function Content({ restaurant = [] }) {
     <>
       <div className="bg-orange-500 w-full absolute mt-20 h-[35vh] sm:h-[70vh]"></div>
 
-      <div className="border-10 sm:border-[30px] mx-0 sm:mx-15 my-6 relative border-white sm-rounder-2xl bg-white h-[35vh] sm:h-[65vh]">
+      <div className="border-10 sm:border-[30px] mx-5 sm:mx-15 my-6 relative border-white sm-rounder-2xl bg-white h-[35vh] sm:h-[65vh]">
         <Swiper
           modules={[Navigation, Autoplay]}
           pagination={{ clickable: true }}
@@ -179,7 +179,7 @@ function Content({ restaurant = [] }) {
             <SwiperSlide key={index}>
               <div
                 onClick={() => handleViewMenu(restaurant)}
-                className="border-12 sm:border-20 mx-2 sm:mx-5 my-5 h-[150px] sm:h-[300px] text-center bg-white border-white transition-transform duration-300 ease-in-out transform hover:scale-110 shadow-lg relative overflow-hidden rounded-lg"
+                className="border-10 sm:border-20 mx-2 sm:mx-5 my-5 h-[150px] sm:h-[300px] text-center bg-white border-white transition-transform duration-300 ease-in-out transform hover:scale-110 shadow-lg relative overflow-hidden rounded-lg"
               >
                 <img
                   src={restaurant.imageUrl || image1}
