@@ -39,7 +39,7 @@ const AdminSignup = () => {
   };
 
   return (
-    <div className="relative flex justify-center items-center sm:py-0 py:10 sm:h-screen px-4">
+    <div className="relative flex justify-center items-center my-10 sm:my-0 sm:h-screen px-4">
       {/* Background with Blur Effect */}
       <div
         className="absolute inset-0 bg-cover bg-center opacity-80"
