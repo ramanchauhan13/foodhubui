@@ -86,7 +86,7 @@ function Content({ restaurant = [] }) {
             </h1>
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center h-30 w-30 sm:h-60 sm:w-60 cursor-pointer"
+          <div className="flex flex-col items-center justify-center h-26 w-25 sm:h-60 sm:w-60 cursor-pointer"
             onClick={() => handleSectionClick(item)}
           >
             <img
@@ -139,11 +139,11 @@ function Content({ restaurant = [] }) {
   navigation={false}
   pagination={{ clickable: true }}
   autoplay={{ delay: 2000, pauseOnMouseEnter: true }}
-  spaceBetween={10}
-  slidesPerView={3} // shows 3 per view in mobile
+  spaceBetween={1}
+  slidesPerView={4} // shows 3 per view in mobile
   breakpoints={{
-    320: { slidesPerView: 4, spaceBetween: 10 },
-    768: { slidesPerView: 4, spaceBetween: 20 },
+    320: { slidesPerView: 4, spaceBetween: 1 },
+    768: { slidesPerView: 4, spaceBetween: 10 },
     1024: { slidesPerView: 5, spaceBetween: 30 },
   }}
   loop={true}
