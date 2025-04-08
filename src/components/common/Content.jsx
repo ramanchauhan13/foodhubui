@@ -122,10 +122,10 @@ function Content({ restaurant = [] }) {
                 alt={`Slide ${index + 1}`}
                 className="w-full h-full object-cover absolute"
               />
-              <h1 className="text-white block bg-white/10 font-bold text-4xl relative text-center top-1/3">
+              <h1 className="text-white block bg-white/10 font-bold text-3xl sm:text-4xl relative text-center top-1/3">
                 FoodHub
               </h1>
-              <h1 className="text-white bg-white/10 text-2xl relative text-center top-1/3">
+              <h1 className="text-white bg-white/10 text-xl sm:text-2xl relative text-center top-1/3">
                 Your Favorite Food, Delivered Fast!
               </h1>
             </SwiperSlide>
@@ -152,7 +152,7 @@ function Content({ restaurant = [] }) {
 </Swiper>
       </div>
 
-      <div className="flex items-center justify-center my-6 px-4 flex-wrap sm:flex-nowrap">
+      <div className="flex items-center justify-center mt-4 px-4 flex-wrap sm:flex-nowrap">
   <hr className="flex-grow border-2 border-gray-500 mx-4 sm:mx-20" />
   <span className="text-black text-2xl font-bold whitespace-nowrap">
     Favorite Restaurants
