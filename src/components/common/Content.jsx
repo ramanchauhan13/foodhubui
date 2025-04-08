@@ -186,9 +186,11 @@ function Content({ restaurant = [] }) {
                   className="w-full h-full object-cover rounded-lg"
                   alt={restaurant.restaurantName}
                 />
-                <h1 className="absolute bottom-2 left-0 right-0 sm:text-lg text-md sm:font-bold font-semibold bg-orange-500 text-black sm:py-2">
-                  {restaurant.restaurantName || "Unnamed Restaurant"}
-                </h1>
+                <h1 className="absolute bottom-2 left-0 right-0 bg-orange-500 text-black sm:py-2 py-1 overflow-hidden">
+  <div className="whitespace-nowrap animate-marquee text-center sm:text-lg text-md sm:font-bold font-semibold px-2">
+    {restaurant.restaurantName || "Unnamed Restaurant"}
+  </div>
+</h1>
               </div>
             </SwiperSlide>
           ))}
