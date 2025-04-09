@@ -113,7 +113,7 @@ const Restaurant = () => {
     <ToastContainer position="top-right" />
 
     <div className="text-center mb-6">
-      <h1 className="text-3xl bg-orange-500 p-4 text-white uppercase font-bold">{restaurant.restaurantName}</h1>
+      <h1 className="sm:text-3xl text-sm bg-orange-500 p-4 text-white uppercase font-bold">{restaurant.restaurantName}</h1>
       <img src={slide1} alt="Restaurant" className="w-full h-50 object-cover shadow-lg mt-3" />
     </div>
 

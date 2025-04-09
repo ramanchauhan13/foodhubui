@@ -60,8 +60,8 @@ function Menu() {
 
       {/* Blurred Background when Loading */}
       <div className={`${loading ? "blur-sm" : ""}`}>
-        <div className="bg-orange-500 text-white text-center py-3 text-lg font-semibold">
-          MENU
+      <div className="bg-orange-500 uppercase text-white text-center py-3 text-xl font-semibold">
+          Restaurants
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10 mt-6 max-w-6xl mx-auto px-6">
           {restaurants.map((restaurant) => (
