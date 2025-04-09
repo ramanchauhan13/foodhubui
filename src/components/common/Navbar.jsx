@@ -286,8 +286,8 @@ const Navbar = ({ allItems }) => {
         <div className="flex items-center gap-4 cursor-pointer" onClick={handleLogo}>
           <img src={logo} alt="FOODHUB" className="h-12" />
           <div>
-            <h1 className="font-bold text-2xl font-[cursive]">FOODHUB</h1>
-            <h2 className="text-sm text-gray-300">Food For Your Soul...</h2>
+            <h1 className="font-bold text-2xl ">FOODHUB</h1>
+            <h2 className="text-sm text-gray-300 font-[cursive]">Food For Your Soul...</h2>
           </div>
         </div>
 
@@ -335,6 +335,12 @@ const Navbar = ({ allItems }) => {
       </li>
     </>
   )}
+    {user && (
+  <div className="flex items-center gap-2">
+  <h1 className="font-semibold">Welcome! <br></br>{user?.name}</h1>
+  <button onClick={clickLogout} className="bg-red-600 px-1 rounded-full text-white cursor-pointer mb-5"> <i class="fa-solid fa-power-off"></i></button>
+  </div>
+)}
 </ul>
 
         {/* Hamburger Icon - only mobile */}
