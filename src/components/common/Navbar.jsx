@@ -283,11 +283,11 @@ const Navbar = ({ allItems }) => {
     <nav className="bg-orange-500 z-50 text-white w-full opacity-90 sticky top-0 shadow-md px-4 md:px-16">
       <div className="flex justify-between items-center h-[10vh]">
         {/* Logo */}
-        <div className="flex items-center gap-4 cursor-pointer" onClick={handleLogo}>
+        <div className="flex items-center gap-3 cursor-pointer" onClick={handleLogo}>
           <img src={logo} alt="FOODHUB" className="h-12" />
           <div>
-            <h1 className="font-bold text-2xl ">FOODHUB</h1>
-            <h2 className="text-sm text-gray-300 font-[cursive]">Food For Your Soul...</h2>
+            <h1 className="font-bold text-2xl mt-2 leading-none">FOODHUB</h1>
+            <h1 className="text-md text-gray-200 font-[cursive]">Food For Your Soul...</h1>
           </div>
         </div>
 
