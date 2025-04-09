@@ -64,7 +64,7 @@ const Checkout = () => {
 
   if (!user) {
     return (
-      <div className="flex flex-col mt-30 justify-center items-center">
+      <div className="flex flex-col sm:mt-30 sm:my-0 my-20 justify-center items-center">
         <p className="text-lg">Please log in to view your cart.</p>
         <button
           onClick={()=>navigate("/login")}
@@ -78,7 +78,7 @@ const Checkout = () => {
 
   if (cart.length === 0) {
     return (
-      <div className="flex flex-col justify-center mt-30 items-center">
+      <div className="flex flex-col justify-center sm:mt-30 sm:my-0 my-20 items-center">
         <h1 className="text-3xl font-bold  text-center w-full py-3 text-red-600">Your FoodHub cart is empty</h1>
       </div>
     );
@@ -88,11 +88,11 @@ const Checkout = () => {
     <div className="bg-gray-100">
       <ToastContainer position="top-right" />
 
-      <h1 className="text-3xl font-bold  text-center text-gray-800">Your Cart</h1>
+      <h1 className="sm:text-3xl text-xl font-bold py-3 text-center text-gray-800">Your Cart</h1>
 
-      <div className="mx-auto space-y-6">
+      <div className="mx-auto mb-8 space-y-6">
         {cart.map((restaurant) => (
-          <div key={restaurant.restaurantId} className="p-6 bg-white rounded-lg shadow-lg">
+          <div key={restaurant.restaurantId} className="p-6 bg-white sm:rounded-lg shadow-lg">
             <h2 className="text-xl font-semibold text-gray-900 border-b pb-2">
               {restaurant.restaurantName}
             </h2>

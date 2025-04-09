@@ -39,7 +39,7 @@ const Login = () => {
   };
 
   return (
-    <div className="relative flex justify-center items-center h-screen px-4">
+    <div className="relative flex justify-center items-center my-10 sm:my-0 sm:h-screen px-4">
       {/* Background Image with Blur */}
       <div
         className="absolute inset-0 bg-cover bg-center opacity-80"
