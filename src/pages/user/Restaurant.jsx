@@ -109,63 +109,63 @@ const Restaurant = () => {
   if (!restaurant) return null;
 
   return (
-    <div className="min-h-screen px-8 py-3 text-black bg-gray-100">
-      <ToastContainer position="top-right" />
+    <div className="min-h-screen sm:px-8 px-0 py-1 text-black bg-gray-100">
+    <ToastContainer position="top-right" />
 
-      <div className="text-center mb-6">
-        <h1 className="text-3xl bg-orange-500 p-4 uppercase font-bold">{restaurant.restaurantName}</h1>
-        <img src={slide1} alt="Restaurant" className="w-full h-52 object-cover rounded-md shadow-lg mt-3" />
-      </div>
-
-      <h2 className="text-2xl italic text-center my-6 border-b-2 font-bold border-gray-300 w-1/3 mx-auto">Menu</h2>
-
-      {restaurant.menu.map((section) => (
-        <div key={section._id} className="bg-gray-200 p-6 rounded-lg shadow-lg mb-6">
-          <h2 className="text-xl font-bold mb-3">{section.section}</h2>
-          <ul className="space-y-4">
-            {section.items.map((item) => {
-              const quantity = getItemQuantity(item);
-
-              return (
-                <li key={`${section._id}-${item._id}`} className="flex items-center justify-between bg-gray-100 p-3 rounded-lg shadow-sm">
-                  <div className="flex items-center space-x-4">
-                    <img src={image} alt={item.name} className="w-14 h-14 rounded-md shadow-md" />
-                    <div>
-                      <p className="text-lg font-semibold">{item.name}</p>
-                      <p className="text-sm font-bold">₹{item.price}</p>
-                    </div>
-                  </div>
-                  {quantity > 0 ? (
-                    <div className="flex items-center">
-                      <button
-                        onClick={() => handleChangeQuantity(item, -1)}
-                        className="bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-600 transition"
-                      >
-                        -
-                      </button>
-                      <span className="mx-3 text-lg">{quantity}</span>
-                      <button
-                        onClick={() => handleChangeQuantity(item, 1)}
-                        className="bg-green-500 text-white px-2 py-1 rounded-full hover:bg-green-600 transition"
-                      >
-                        +
-                      </button>
-                    </div>
-                  ) : (
-                    <button
-                      onClick={() => handleAddToCart(item, section)}
-                      className="bg-orange-500 text-white px-4 py-2 rounded-full shadow-md hover:bg-orange-600 transition"
-                    >
-                      ADD
-                    </button>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      ))}
+    <div className="text-center mb-6">
+      <h1 className="text-3xl bg-orange-500 p-4 text-white uppercase font-bold">{restaurant.restaurantName}</h1>
+      <img src={slide1} alt="Restaurant" className="w-full h-50 object-cover shadow-lg mt-3" />
     </div>
+
+    <h2 className="text-2xl italic text-center my-6 border-b-2 font-bold border-gray-300 w-1/3 mx-auto uppercase">Menu</h2>
+
+    {restaurant.menu.map((section) => (
+      <div key={section._id} className="bg-gray-200 shadow-lg mb-6">
+        <h2 className="text-xl font-bold px-2 p-2">{section.section}</h2>
+        <ul className="space-y-4">
+          {section.items.map((item) => {
+            const quantity = getItemQuantity(item);
+
+            return (
+              <li key={`${section._id}-${item._id}`} className="flex items-center justify-between bg-gray-100 p-3 sm:rounded-lg rounded-none shadow-sm">
+                <div className="flex items-center space-x-4">
+                  <img src={image} alt={item.name} className="w-14 h-14 rounded-md shadow-md" />
+                  <div>
+                    <p className="text-lg font-semibold">{item.name}</p>
+                    <p className="text-sm font-bold">₹{item.price}</p>
+                  </div>
+                </div>
+                {quantity > 0 ? (
+                  <div className="flex items-center">
+                    <button
+                      onClick={() => handleChangeQuantity(item, -1)}
+                      className="bg-red-500 text-white px-2 py-1 rounded-full hover:bg-red-600 transition"
+                    >
+                      -
+                    </button>
+                    <span className="mx-3 text-lg">{quantity}</span>
+                    <button
+                      onClick={() => handleChangeQuantity(item, 1)}
+                      className="bg-green-500 text-white px-2 py-1 rounded-full hover:bg-green-600 transition"
+                    >
+                      +
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => handleAddToCart(item, section)}
+                    className="bg-orange-500 text-white px-4 py-2 rounded-full shadow-md hover:bg-orange-600 transition"
+                  >
+                    ADD
+                  </button>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    ))}
+  </div>
   );
 };
 
