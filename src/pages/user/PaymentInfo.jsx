@@ -72,13 +72,24 @@ function PaymentInfo({ setPaymentDone, confirmOrder }) {
   };
 
   return (
-    <div>
+    <div className="mt-30 flex flex-col items-center justify-center gap-5">
       <button
-        className="border-2 px-4 py-2 bg-blue-500 text-white rounded-lg"
+        className="cursor-pointer px-4 py-2 bg-blue-500 text-white rounded-lg"
         onClick={handlePayment}
       >
-        Pay with Razorpay
+        Pay Online
       </button>
+      <button
+  className="cursor-pointer px-4 py-2 bg-blue-500 text-white rounded-lg"
+  onClick={() => {
+    const isConfirmed = window.confirm("Do you want to confirm the order?");
+    if (isConfirmed) {
+      confirmOrder();
+    }
+  }}
+>
+  Cash On Delivery
+</button>
     </div>
   );
 }

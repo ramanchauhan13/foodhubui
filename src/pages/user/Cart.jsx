@@ -4,8 +4,10 @@ import PaymentInfo from "./PaymentInfo";
 import Checkout from "./Checkout";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [paymentDone, setPaymentDone] = useState(false);
 
@@ -44,6 +46,7 @@ const Cart = () => {
       toast.success(response.data.message);
       localStorage.removeItem(`cart_${user.id}`);
       setStep(1);
+      navigate(`/user/${user.id}/orders`);
     } catch (error) {
       toast.error("Failed to place order!");
       console.error(error);
