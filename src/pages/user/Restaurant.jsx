@@ -114,7 +114,7 @@ const Restaurant = () => {
 
     <div className="text-center mb-6">
       <h1 className="sm:text-3xl text-lg bg-orange-500 p-4 text-white uppercase font-bold">{restaurant.restaurantName}</h1>
-      <img src={slide1} alt="Restaurant" className="w-full h-50 object-cover shadow-lg mt-3" />
+      <img src={restaurant.imageUrl} alt="Restaurant" className="w-full h-50 object-cover shadow-lg mt-3" />
     </div>
 
     <h2 className="text-2xl italic text-center my-6 border-b-2 font-bold border-gray-300 w-1/3 mx-auto uppercase">Menu</h2>
