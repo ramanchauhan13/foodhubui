@@ -121,7 +121,7 @@ const Restaurant = () => {
 
     {restaurant.menu.map((section) => (
       <div key={section._id} className="bg-gray-200 shadow-lg mb-6">
-        <h2 className="text-xl font-bold px-2 p-2">{section.section}</h2>
+        <h2 className="text-xl font-bold px-2 p-2 uppercase">{section.section}</h2>
         <ul className="space-y-4">
           {section.items.map((item) => {
             const quantity = getItemQuantity(item);
@@ -131,7 +131,7 @@ const Restaurant = () => {
                 <div className="flex items-center space-x-4">
                   <img src={image} alt={item.name} className="w-14 h-14 rounded-md shadow-md" />
                   <div>
-                    <p className="text-lg font-semibold">{item.name}</p>
+                    <p className="sm:text-lg text-md font-semibold">{item.name}</p>
                     <p className="text-sm font-bold">₹{item.price}</p>
                   </div>
                 </div>
