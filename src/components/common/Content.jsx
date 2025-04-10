@@ -11,6 +11,7 @@ import slide4 from "../../assets/slide4.jpg";
 import slide5 from "../../assets/slide5.jpg";
 import { useNavigate, useParams } from "react-router-dom";
 import image1 from "../../assets/restaurant1.jpg";
+import Loader from "../../Loader";
 
 const PEXELS_API_KEY = "sSfQGKJtC1XMCCIBlUzPZd0hoSKEYaRpyYAmUSEVldfWmODXn9MSWzjL";
 
@@ -18,6 +19,13 @@ function Content({ restaurant = [] }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const [sectionImages, setSectionImages] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (restaurant.length > 0) {
+      setLoading(false);
+    }
+  }, [restaurant]);
 
   // Extracting all unique sections
   const allSections = restaurant.flatMap((restaurant) =>
@@ -115,8 +123,13 @@ function Content({ restaurant = [] }) {
 
   return (
     <>
-      <div className="bg-orange-500 w-full absolute mt-20 h-[30vh] sm:h-[70vh]"></div>
-
+      {!loading && (
+  <div className="bg-orange-500 w-full absolute mt-20 h-[30vh] sm:h-[70vh]"></div>
+)}
+      {loading && (
+        <Loader />
+      )}
+      
       <div className="border-10 sm:border-[30px] mx-5 sm:mx-15 my-6 relative border-white sm-rounder-2xl bg-white h-[30vh] sm:h-[65vh]">
         <Swiper
           modules={[Navigation, Autoplay]}
@@ -203,6 +216,7 @@ function Content({ restaurant = [] }) {
             </SwiperSlide>
           ))}
         </Swiper>
+        
       </div>
     </>
   );
