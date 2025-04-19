@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import image from "../../assets/profile.jpeg";
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 function Profile() {
   const user = JSON.parse(localStorage.getItem("user")) || {};
@@ -36,7 +37,7 @@ function Profile() {
     const updatedField = { [key]: formData[key] };
 
     try {
-      const response = await axios.patch(`https://foodhubapi-1.onrender.com/api/user/${user.id}/profile`, updatedField);
+      const response = await axios.patch(`${baseURL}/user/${user.id}/profile`, updatedField);
       if (response.status === 200) {
         const updatedUser = { ...user, ...updatedField };
         localStorage.setItem("user", JSON.stringify(updatedUser));

@@ -4,6 +4,7 @@ import backgroundImage from "../../assets/background.png"; // Background image p
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("https://foodhubapi-1.onrender.com/api/auth", {
+      const response = await axios.post(`${baseURL}/auth`, {
         email,
         password,
         role,

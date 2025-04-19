@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import backgroundImage from "../../assets/background.png"; 
 import { useNavigate } from "react-router-dom";
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 const AdminSignup = () => {
   const [formData, setFormData] = useState({
@@ -30,7 +31,7 @@ const AdminSignup = () => {
     setError("");
 
     try {
-      const response = await axios.post("https://foodhubapi-1.onrender.com/api/admin/signup", formData);
+      const response = await axios.post(`${baseURL}/api/admin/signup`, formData);
       alert(response.data.message);
       navigate("/login");
     } catch (err) {
@@ -39,7 +40,7 @@ const AdminSignup = () => {
   };
 
   return (
-    <div className="relative flex justify-center items-center my-17 sm:my-0 sm:h-screen px-8">
+    <div className="relative flex justify-center items-center my-10 sm:my-0 sm:h-screen px-4">
       {/* Background with Blur Effect */}
       <div
         className="absolute inset-0 bg-cover bg-center opacity-80"

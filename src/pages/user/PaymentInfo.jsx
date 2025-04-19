@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import axios from "axios";
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 function PaymentInfo({ setPaymentDone, confirmOrder }) {
   useEffect(() => {
@@ -24,7 +25,7 @@ function PaymentInfo({ setPaymentDone, confirmOrder }) {
     , 0);
 
     try {
-      const response = await axios.post("https://foodhubapi-1.onrender.com/api/create-order", {
+      const response = await axios.post(`${baseURL}/create-order`, {
         amount: totalAmount,
         currency: "INR",
       });
@@ -44,7 +45,7 @@ function PaymentInfo({ setPaymentDone, confirmOrder }) {
         description: "Order Payment",
         order_id: order.id,
         handler: async function (response) {
-          const verifyRes = await axios.post("https://foodhubapi-1.onrender.com/api/verify-payment", response);
+          const verifyRes = await axios.post(`${baseURL}/verify-payment`, response);
           if (verifyRes.data.success) {
             setPaymentDone(true);
             alert("Payment Successful!");

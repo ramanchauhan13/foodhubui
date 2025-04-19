@@ -3,6 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, useParams } from "react-router-dom";
 
+
 const Checkout = () => {
   const user = localStorage.getItem("user"); // Get user from localStorage
   const [cart, setCart] = useState([]);

@@ -3,6 +3,7 @@ import axios from "axios";
 import backgroundImage from "../../assets/background.png";
 import Loader from "../../Loader";
 import { useNavigate } from "react-router-dom";
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 const UserSignup = () => {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ const UserSignup = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post("https://foodhubapi-1.onrender.com/api/user/signup", formData);
+      const response = await axios.post(`${baseURL}/user/signup`, formData);
       alert(response.data.message);
       navigate("/login");
     } catch (err) {
@@ -44,7 +45,7 @@ const UserSignup = () => {
   };
 
   return (
-    <div className="relative flex justify-center items-center my-17 sm:my-0 sm:h-screen px-8">
+    <div className="relative flex justify-center items-center sm:py-0 py:10 sm:h-screen px-4">
   {loading && (
     <div className="absolute inset-0 flex justify-center items-center  backdrop-blur-sm z-50">
       <Loader />

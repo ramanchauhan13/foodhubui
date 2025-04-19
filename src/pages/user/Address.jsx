@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 function Address() {
   const userId = JSON.parse(localStorage.getItem("user")).id;
@@ -40,7 +41,7 @@ function Address() {
 
     try {
       const response = await axios.patch(
-        `https://foodhubapi-1.onrender.com/api/user/${userId}/address`,
+        `${baseURL}/user/${userId}/address`,
         form
       );
       if (response.status === 200) {
@@ -64,7 +65,7 @@ function Address() {
 
   const fetchAddress = async () => {
     try {
-      const response = await axios.get(`https://foodhubapi-1.onrender.com/api/user/${userId}/address`);
+      const response = await axios.get(`${baseURL}/user/${userId}/address`);
       if (response.status === 200 && response.data.address) {
         setAddress(response.data.address);
         setIsEditable(false);

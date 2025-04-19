@@ -89,7 +89,7 @@ function Section() {
   return (
     <div className="p-8 bg-gray-200 min-h-screen">
       <h1 className="text-4xl font-bold text-center text-gray-800 mb-8 capitalize">
-        {section} Items
+        {section}
       </h1>
       <div className="space-y-8 max-w-6xl mx-auto">
         {restaurants.map((restaurant) => (

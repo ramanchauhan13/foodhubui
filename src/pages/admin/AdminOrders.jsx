@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import moment from "moment";
 import "react-toastify/dist/ReactToastify.css";
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 const Orders = ({ adminId }) => {
   const [orders, setOrders] = useState([]);
@@ -15,7 +16,7 @@ const Orders = ({ adminId }) => {
       }
       try {
         const response = await axios.get(
-          `https://foodhubapi-1.onrender.com/api/admin/${adminId}/orders`
+          `${baseURL}/admin/${adminId}/orders`
         );
         const sortedOrders = response.data.sort(
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
@@ -35,7 +36,7 @@ const Orders = ({ adminId }) => {
   const updateOrderStatus = async (orderId, restaurantId, newStatus) => {
     try {
       const response = await axios.put(
-        `https://foodhubapi-1.onrender.com/api/admin/orders/${orderId}/status`,
+        `${baseURL}/admin/orders/${orderId}/status`,
         { status: newStatus, restaurantId }
       );
 

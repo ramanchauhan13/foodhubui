@@ -21,6 +21,7 @@ import OurTeam from './components/common/OurTeam';
 import Profile from "./pages/user/Profile";
 import Menu from "./components/common/Menu";
 import ScrollToTop from "./ScrollToTop";
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 function App() {
   const role = JSON.parse(localStorage.getItem("user"))?.role;
@@ -32,7 +33,7 @@ function App() {
           const fetchRestaurant = async () => {
             try {
               setLoading(true);
-              const response = await axios.get("https://foodhubapi-1.onrender.com/api/home");
+              const response = await axios.get(`${baseURL}/home`);
               // console.log("Api Response", response.data);
               if (Array.isArray(response.data)) {
                 setRestaurant(response.data);

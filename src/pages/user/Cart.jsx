@@ -5,6 +5,8 @@ import Checkout from "./Checkout";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+const baseURL = import.meta.env.VITE_API_BASE_URL;
+
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -36,7 +38,7 @@ const Cart = () => {
       }
 
       const response = await axios.post(
-        "https://foodhubapi-1.onrender.com/api/place-order",
+        `${baseURL}/place-order`,
         { cart },
         {
           headers: { Authorization: `Bearer ${user.token}` },
@@ -55,7 +57,7 @@ const Cart = () => {
 
   return (
     <>
-      <div className="sm:mx-30 mx-0 min:h-[90vh] h-[80vh] bg-white flex flex-col sm:px-20 py-10 overflow-auto justify-between">
+      <div className="sm:mx-30 mx-0 sm:h-[90vh] h-[80vh] bg-white flex flex-col sm:px-20 py-10 overflow-auto justify-between">
         <div>
           <div className="relative flex items-center justify-between w-full">
             <div className="absolute top-1/3 left-1/6 right-1/6 h-1 bg-gray-300 z-0"></div>

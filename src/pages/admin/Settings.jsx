@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import defaultRestaurant from "../../assets/defaultRestaurant.jpg";
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 function Settings() {
   const { id } = useParams();
@@ -20,7 +21,7 @@ function Settings() {
         setUser(storedUser);
         setFormData(storedUser);
 
-        const res = await axios.get(`https://foodhubapi-1.onrender.com/api/admin/${id}/settings`);
+        const res = await axios.get(`${baseURL}/api/admin/${id}/settings`);
         setUser(res.data);
         setFormData(res.data);
         setImage(res.data.imageUrl || defaultRestaurant);
@@ -53,7 +54,7 @@ function Settings() {
 
     try {
       const res = await axios.post(
-        `https://foodhubapi-1.onrender.com/api/admin/${id}/settings`,
+        `${baseURL}/api/admin/${id}/settings`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
@@ -77,7 +78,7 @@ function Settings() {
     const updatedField = { [key]: formData[key] };
 
     try {
-      await axios.patch(`https://foodhubapi-1.onrender.com/api/admin/${id}/settings`, updatedField);
+      await axios.patch(`${baseURL}/api/admin/${id}/settings`, updatedField);
       setUser({ ...user, ...updatedField });
       localStorage.setItem("user", JSON.stringify({ ...user, ...updatedField }));
       setEditableFields({ ...editableFields, [key]: false });
