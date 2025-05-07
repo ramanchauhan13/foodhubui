@@ -37,7 +37,7 @@ const AdminDashboard = () => {
   return (
     <div className="flex bg-gray-100 py-2 min-h-screen">
       <main className="flex-1">
-        <div className="grid grid-cols-4 gap-2 mb-2">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2">
           <button className="bg-orange-500 rounded-lg text-center text-white shadow font-bold text-md p-2 hover:bg-orange-600">
             Total Orders <br />190
           </button>
@@ -52,7 +52,7 @@ const AdminDashboard = () => {
           </button>
         </div>
 
-        <div className="grid grid-cols-2 gap-6 overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 overflow-hidden">
           <div className="bg-white p-2 shadow rounded-lg flex flex-col h-full">
             <h2 className="font-bold text-md mb-2">Customer Location Chart</h2>
             <ResponsiveContainer width="100%" height={200}>

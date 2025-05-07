@@ -14,9 +14,8 @@ const Restaurant = () => {
 
   const [restaurant, setRestaurant] = useState(location.state?.restaurant || null);
   const [restaurantLoading, setRestaurantLoading] = useState(!restaurant);
-  const [imageLoading, setImageLoading] = useState(true);
-  const [itemImages, setItemImages] = useState({});
   const [cart, setCart] = useState([]);
+  const [imageLoading, setImageLoading] = useState(true);
 
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user?.id;
@@ -52,18 +51,40 @@ const Restaurant = () => {
   useEffect(() => {
     const fetchImages = async () => {
       if (!restaurant) return;
-      const images = {};
+  
+      const loadingStates = {};
+  
+      const itemsToFetch = [];
+  
       for (const section of restaurant.menu || []) {
         for (const item of section.items) {
-          const img = await getPexelsImage(item.name);
-          if (img) images[item._id] = img;
+          if (!item.imageUrl) {
+            // If imageUrl doesn't exist, mark for fetching
+            loadingStates[item._id] = true;
+            itemsToFetch.push(item);
+          }
         }
       }
-      setItemImages(images);
-      setImageLoading(false);
+  
+      setImageLoading(loadingStates); // Set loading state for items with no image
+  
+      for (const item of itemsToFetch) {
+        const img = await getPexelsImage(item.name);
+        if (img) {
+          try {
+            await axios.patch(`${baseURL}/admin/menu/item/${item._id}`, { imageUrl: img });
+          } catch (err) {
+            console.error("Error updating item with image:", err.message);
+          }
+        }
+        loadingStates[item._id] = false;
+        setImageLoading(prev => ({ ...prev, [item._id]: false }));
+      }
     };
-    restaurant && fetchImages();
+  
+    fetchImages();
   }, [restaurant]);
+  
 
   useEffect(() => {
     if (user) {
@@ -116,7 +137,7 @@ const Restaurant = () => {
     cart.find(r => r.restaurantName === restaurant.restaurantName)
       ?.items.find(i => i._id === item._id)?.quantity || 0;
 
-  if (restaurantLoading || imageLoading)
+  if (restaurantLoading)
     return <div className="min-h-screen flex justify-center items-center"><Loader /></div>;
   if (!restaurant) return null;
 
@@ -141,11 +162,16 @@ const Restaurant = () => {
             <ul className="space-y-4">
               {section.items.map((item) => {
                 const quantity = getItemQuantity(item);
-                const img = itemImages[item._id];
                 return (
                   <li key={item._id} className="flex items-center justify-between bg-gray-100 p-3 rounded-md shadow-sm">
                     <div className="flex items-center space-x-4">
-                      <img src={img} alt={item.name} className="w-14 h-14 rounded-md shadow-md" />
+                      {imageLoading ? (
+                        <img src={item.itemImg} alt={item.name} loading="lazy" className="w-14 h-14 rounded-md shadow-md" />
+                      ) : (
+                        <div className="w-14 h-14 bg-gray-300 animate-pulse rounded-md shadow-md flex items-center justify-center text-xs text-gray-500">
+                          Loading...
+                        </div>
+                      )}
                       <div>
                         <p className="text-md font-semibold">{item.name}</p>
                         <p className="text-sm font-bold">₹{item.price}</p>
@@ -170,10 +196,20 @@ const Restaurant = () => {
           <div className="hidden sm:grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 p-2">
             {section.items.map((item) => {
               const quantity = getItemQuantity(item);
-              const img = itemImages[item._id];
               return (
                 <div key={item._id} className="bg-white shadow-md rounded-2xl p-4 flex flex-col items-center aspect-square hover:shadow-xl transition">
-                  <img src={img} alt={item.name} className="w-58 h-34 object-cover rounded-lg mb-3 border" />
+                  {imageLoading ? (
+                   <img
+                   src={item.itemImg || slide1}
+                   alt={item.name}
+                   loading="lazy"
+                   className="w-58 h-34 object-cover rounded-lg mb-3 border"
+                 />
+                  ) : (
+                    <div className="w-58 h-34 bg-gray-300 animate-pulse rounded-lg mb-3 border flex items-center justify-center text-sm text-gray-500">
+                      Loading...
+                    </div>
+                  )}
                   <div className="text-center">
                     <p className="text-base font-semibold">{item.name}</p>
                     <p className="text-sm font-bold text-gray-600">₹{item.price}</p>

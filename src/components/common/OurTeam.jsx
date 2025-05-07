@@ -26,7 +26,7 @@ const teamMembers = [
   },
   {
     name: "Toshika Varshney",
-    role: "UI Designer",
+    role: "Frontend Developer",
     image: toshika,
     socials: [
       { platform: "linkedin", link: "https://www.linkedin.com/in/toshika-varshney-9a9b87280?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BHdHeL5jhS7ukTuKJ7yTNGw%3D%3D" },

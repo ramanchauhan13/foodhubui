@@ -72,7 +72,7 @@ function App() {
             ) || []
         );
         // setAllItems(allItems);
-        console.log("All Items:", allItems);
+        // console.log("All Items:", allItems); 
 
   // const [allItems, setAllItems] = React.useState([]);
   return (

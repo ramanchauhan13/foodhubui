@@ -15,24 +15,22 @@ const UserOrders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get(
-          `${baseURL}/user/${id}/orders`
-        );
-  
+        const response = await axios.get(`${baseURL}/user/${id}/orders`);
+
         const allLiveOrders = response.data.liveOrders || [];
         const allPastOrders = response.data.pastOrders || [];
-  
+
         // Filter out rejected orders from live orders
         const filteredLiveOrders = allLiveOrders
           .filter((order) => order.status !== "Rejected")
           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Newest first
-  
+
         // Add rejected orders to past orders
         const updatedPastOrders = [
           ...allPastOrders,
           ...allLiveOrders.filter((order) => order.status === "Rejected"),
         ].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Sort past orders too
-  
+
         setLiveOrders(filteredLiveOrders);
         setPastOrders(updatedPastOrders);
       } catch (err) {
@@ -41,7 +39,7 @@ const UserOrders = () => {
         setLoading(false);
       }
     };
-  
+
     fetchOrders();
     const interval = setInterval(fetchOrders, 10000);
     return () => clearInterval(interval);
@@ -84,7 +82,8 @@ const UserOrders = () => {
                   >
                     {/* Restaurant Name */}
                     <div className="text-lg font-semibold text-gray-900">
-                      {order.restaurantId?.restaurantName || "Unknown Restaurant"}
+                      {order.restaurantId?.restaurantName ||
+                        "Unknown Restaurant"}
                     </div>
 
                     <div className="flex justify-between text-gray-700">
@@ -93,9 +92,20 @@ const UserOrders = () => {
                           .map((i) => `${i.name} (x${i.quantity})`)
                           .join(", ")}
                       </span>
-                      <span className="text-sm">{moment(order.createdAt).format("DD MMM YYYY, hh:mm A")}</span>
+                      <span className="text-sm">
+                        {moment(order.createdAt).format("DD MMM YYYY, hh:mm A")}
+                      </span>
                     </div>
-                    <div className="flex justify-between items-center mt-2">
+                    <h1
+                      className={`text-sm font-semibold ${
+                        order.deliveryBoy !== "Not Assigned"
+                          ? "text-green-600"
+                          : "text-red-500"
+                      }`}
+                    >
+                      Delivery By: {order.deliveryBoy}
+                    </h1>
+                    <div className="flex justify-between items-center">
                       <span
                         className={`text-sm font-semibold ${
                           order.status === "Out for Delivery"
@@ -106,7 +116,21 @@ const UserOrders = () => {
                         }`}
                       >
                         {order.status}
+                        <span className="text-black"> | </span>
+                        <span
+                          className={`text-sm font-semibold ${
+                            order.deliveryTime !== null
+                              ? "text-blue-600"
+                              : "text-gray-500"
+                          }`}
+                        >
+                          Delivery in:{" "}
+                          {order.deliveryTime !== null
+                            ? `${order.deliveryTime} min`
+                            : "Wait for accept"}
+                        </span>
                       </span>
+
                       <span className="text-md font-semibold text-black">
                         ₹
                         {order.items
@@ -145,7 +169,8 @@ const UserOrders = () => {
                   >
                     {/* Restaurant Name */}
                     <div className="text-lg font-semibold text-gray-900">
-                      {order.restaurantId?.restaurantName || "Unknown Restaurant"}
+                      {order.restaurantId?.restaurantName ||
+                        "Unknown Restaurant"}
                     </div>
 
                     <div className="flex justify-between text-gray-700">
@@ -154,11 +179,13 @@ const UserOrders = () => {
                           .map((i) => `${i.name} (x${i.quantity})`)
                           .join(", ")}
                       </span>
-                      <span className="text-sm">{new Date(order.createdAt).toLocaleString()}</span>
+                      <span className="text-sm">
+                        {new Date(order.createdAt).toLocaleString()}
+                      </span>
                     </div>
                     <div className="flex justify-between mt-2">
                       <span className="text-sm font-semibold text-gray-700">
-                        {order.status}
+                        {order.status} by {order.deliveryBoy}
                       </span>
                       <span className="text-md font-semibold text-black">
                         ₹

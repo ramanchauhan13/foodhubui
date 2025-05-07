@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 function Section() {
   const location = useLocation();
@@ -8,39 +9,30 @@ function Section() {
 
   const { section, restaurants } = location.state;
 
-  // Load existing cart from local storage or initialize an empty array
   const [cart, setCart] = useState(() => {
     const existingCart = localStorage.getItem(`cart_${userId}`);
     return existingCart ? JSON.parse(existingCart) : [];
   });
 
   useEffect(() => {
-    // Update local storage whenever the cart changes
     localStorage.setItem(`cart_${userId}`, JSON.stringify(cart));
   }, [cart, userId]);
 
   const handleAddToCart = (item, restaurant) => {
+    if(!user) return toast.error("Please Login To Add Item In Cart");
     const restaurantId = restaurant.restaurantId || restaurant.id || restaurant._id;
-    
-    if (!restaurantId) {
-      console.error("Restaurant ID is missing:", restaurant);
-      return;
-    }
+    if (!restaurantId) return;
 
-    // Check if restaurant already exists in the cart
     const restaurantIndex = cart.findIndex((r) => r.restaurantId === restaurantId);
-  
+
     if (restaurantIndex > -1) {
-      // Check if the item already exists in the restaurant's cart
       const itemIndex = cart[restaurantIndex].items.findIndex((i) => i.name === item.name);
-  
+
       if (itemIndex > -1) {
-        // If item exists, increase quantity
         const updatedCart = [...cart];
         updatedCart[restaurantIndex].items[itemIndex].quantity += 1;
         setCart(updatedCart);
       } else {
-        // If item does not exist, add it with section and quantity
         const updatedCart = [...cart];
         updatedCart[restaurantIndex].items.push({
           ...item,
@@ -50,7 +42,6 @@ function Section() {
         setCart(updatedCart);
       }
     } else {
-      // If restaurant does not exist, create a new entry
       const newEntry = {
         restaurantId,
         restaurantName: restaurant.restaurantName,
@@ -63,8 +54,6 @@ function Section() {
       };
       setCart([...cart, newEntry]);
     }
-
-    // alert(`${item.name} has been added to your cart!`);
   };
 
   const handleChangeQuantity = (item, restaurant, quantity) => {
@@ -91,49 +80,66 @@ function Section() {
       <h1 className="text-4xl font-bold text-center text-gray-800 mb-8 capitalize">
         {section}
       </h1>
-      <div className="space-y-8 max-w-6xl mx-auto">
+
+      <div className="space-y-12 max-w-7xl mx-auto">
         {restaurants.map((restaurant) => (
-          <div key={restaurant.restaurantName} className="bg-white p-6 rounded-xl shadow-lg">
-            <h2 className="text-2xl font-semibold text-gray-700 mb-6">{restaurant.restaurantName}</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6">
+          <div
+            key={restaurant.restaurantName}
+            className="bg-white p-6 md:p-8 rounded-3xl shadow-xl border border-gray-200"
+          >
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-700 mb-6">
+              {restaurant.restaurantName}
+            </h2>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {restaurant.menu
                 .filter((menuSection) => menuSection.section === section)
                 .flatMap((menuSection) => menuSection.items)
                 .map((item) => {
-                  // Get the current item's quantity from the cart
                   const cartItem = cart
                     .flatMap((r) => r.items)
                     .find((i) => i.name === item.name) || {};
 
                   return (
-                    <div key={item.name} className="bg-white border px-2 py-2 rounded-lg shadow-md hover:shadow-xl transition-transform transform hover:scale-105">
-                      <h3 className="text-lg font-semibold text-gray-800">{item.name}</h3>
-                      <p className="text-green-600 font-bold text-xl mt-2">Rs.{item.price}</p>
-                      
+                    <div
+                      key={item.name}
+                      className="bg-white p-2 md:p-4 border border-gray-300 rounded-2xl shadow-sm hover:shadow-md transition-transform hover:scale-[1.03] flex flex-row md:flex-col justify-between items-center"
+                    >
+                      <div className="w-14 h-14 md:w-58 md:h-34">
+                        <img src={item.itemImg} alt={item.name} className="border w-full h-full object-cover rounded-lg" />
+                      </div>
+                      <div className="my-2">
+                      <p className="text-md font-semibold">{item.name}</p>
+                        <p className="text-sm font-bold text-start md:text-center">₹{item.price}</p>
+                        </div>
+
                       {cartItem.quantity > 0 ? (
-                        <div className="flex items-center mt-4">
-                          <button
-                            onClick={() => handleChangeQuantity(item, restaurant, (cartItem.quantity || 0) + 1)}
-                            className="bg-red-500 text-white py-1 px-2 rounded hover:bg--600 transition"
-                          >
-                            +
-                          </button>
-                          <span className="mx-2">{cartItem.quantity}</span>
+                        <div className="flex items-center justify-between mt-6">
                           <button
                             onClick={() => {
                               if (cartItem.quantity > 0) {
                                 handleChangeQuantity(item, restaurant, (cartItem.quantity || 0) - 1);
                               }
                             }}
-                            className="bg-green-500 text-white py-1 px-2 rounded hover:bg-green-600 transition"
+                            className="bg-red-500 text-white w-8 h-8 text-lg cursor-pointer font-bold rounded-full hover:bg-red-600 transition"
                           >
                             -
                           </button>
+                          <span className="font-semibold text-gray-700 mx-3 text-lg">{cartItem.quantity}</span>
+                          <button
+                            onClick={() =>
+                              handleChangeQuantity(item, restaurant, (cartItem.quantity || 0) + 1)
+                            }
+                            className="bg-green-500 text-white w-8 h-8 text-lg cursor-pointer font-bold rounded-full hover:bg-green-600 transition"
+                          >
+                            +
+                          </button>
+                          
                         </div>
                       ) : (
                         <button
                           onClick={() => handleAddToCart(item, restaurant)}
-                          className="mt-4 bg-orange-500 text-white py-1 px-2 rounded-2xl cursor-pointer transition"
+                          className="w-20 h-10 md:w-18 bg-orange-500 text-white cursor-pointer font-semibold py-2 rounded-full hover:bg-orange-600 transition"
                         >
                           ADD
                         </button>
@@ -145,6 +151,7 @@ function Section() {
           </div>
         ))}
       </div>
+      <ToastContainer/>
     </div>
   );
 }

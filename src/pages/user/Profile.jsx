@@ -11,6 +11,7 @@ function Profile() {
 
   const fields = [
     { label: "Full Name", key: "name", placeholder: "Your First Name" },
+    { label: "Email", key: "email", placeholder: "Your Email Id" },
     { label: "Mobile", key: "mobile", placeholder: "Your Mobile Number" },
     { label: "Date of Birth", key: "dob", placeholder: "Your DOB" },
     { label: "Department", key: "department", placeholder: "Your Department" },
@@ -62,7 +63,7 @@ function Profile() {
 
         {/* Profile Section */}
         <div className="mt-6 flex items-center space-x-6 relative">
-          <div className="relative">
+          {/* <div className="relative">
             <img className="w-28 h-28 rounded-full border-4 border-gray-400" src={image} alt="Profile" />
             <button
               className="absolute -top-2 -right-2 bg-orange-500 text-white p-2 rounded-full hover:bg-orange-600 shadow-md"
@@ -70,11 +71,11 @@ function Profile() {
             >
               <i className="fa-solid fa-pencil"></i>
             </button>
-          </div>
-          <div>
+          </div> */}
+          {/* <div>
             <h3 className="text-xl font-semibold text-black">{user.name}</h3>
             <p className="text-gray-600">{user.email}</p>
-          </div>
+          </div> */}
         </div>
 
         {/* Form Fields */}

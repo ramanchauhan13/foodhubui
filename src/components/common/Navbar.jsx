@@ -219,7 +219,7 @@ const Navbar = ({ allItems }) => {
             </>
           )}
           {user && (
-            <button onClick={clickLogout} className="bg-red-600 px-1 rounded-full text-white cursor-pointer"> <i class="fa-solid fa-power-off"></i></button>
+            <button onClick={clickLogout} className="bg-red-600 px-1 rounded-full text-white cursor-pointer"> <i className="fa-solid fa-power-off"></i></button>
           )}
         </div>
       )}
