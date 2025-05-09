@@ -1,35 +1,126 @@
-import React from "react";
+import {React,useEffect,useState} from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from "recharts";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
+  const [data , setData] = useState([]);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const adminId = user?.id;
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
 
-  const orderData = [
-    { name: "Nov", orders: 30 },
-    { name: "Dec", orders: 50 },
-    { name: "Jan", orders: 40 },
-    { name: "Feb", orders: 60 },
-  ];
+  const fetchData = async()=>{
+    try{
+      const response = await axios.get(`${baseURL}/restaurant/${adminId}/orders`);
+      setData(response.data);
+      // console.log("Orders Data:", response.data);
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
 
-  const revenueData = [
-    { name: "North", value: 4000 },
-    { name: "South", value: 3000 },
-    { name: "East", value: 2000 },
-    { name: "West", value: 5000 },
-  ];
+  useEffect(() => {
+    fetchData();
+  }, [adminId]);
 
-  const customerLocationData = [
-    { name: "MEDICAL", customers: 500 },
-    { name: "CCSIT", customers: 700 },
-    { name: "DENTAL", customers: 600 },
-    { name: "FOE", customers: 500 },
-    { name: "HOSTEL", customers: 800 }
-  ];
+
+console.log(data)
+
+const totalOrders = data.length;
+const totalRevenue = data.reduce((acc, order) => acc + order.totalPrice, 0);
+
+const getTodaySales = () => {
+  const today = new Date().toISOString().slice(0, 10); // format: YYYY-MM-DD
+
+  const todayOrders = data.filter(order => {
+    const orderDate = new Date(order.createdAt).toISOString().slice(0, 10);
+    return orderDate === today && order.status === "Delivered";
+  });
+
+  return todayOrders.reduce((sum, order) => sum + order.totalPrice, 0);
+};
+ const todaySales = getTodaySales();
+
+const totalCustomers = () => {
+  const customerSet = new Set();
+
+  data.forEach(order => {
+    const customerId = order.userId?._id;
+    if (customerId) {
+      customerSet.add(customerId);
+    }
+  });
+
+  return customerSet.size;
+};
+
+const customerSet = totalCustomers();
+
+
+
+// Group orders by month for chart
+const getMonthlyOrders = () => {
+  const monthlyMap = {};
+
+  data.forEach(order => {
+    const date = new Date(order.createdAt);
+    const month = date.toLocaleString('default', { month: 'short' });
+    monthlyMap[month] = (monthlyMap[month] || 0) + 1;
+  });
+
+  return Object.keys(monthlyMap).map(month => ({
+    name: month,
+    orders: monthlyMap[month]
+  }));
+};
+
+// Group revenue by month
+const getMonthlyRevenue = () => {
+  const revenueMap = {};
+
+  data.forEach(order => {
+    const date = new Date(order.createdAt);
+    const month = date.toLocaleString('default', { month: 'short' });
+    revenueMap[month] = (revenueMap[month] || 0) + order.totalPrice;
+  });
+
+  return Object.keys(revenueMap).map(month => ({
+    name: month,
+    value: revenueMap[month]
+  }));
+};
+
+// Group customers by department
+const getCustomerDepartments = () => {
+  const deptMap = {};
+
+  data.forEach(order => {
+    const dept = order.userId?.department || "Unknown";
+    deptMap[dept] = (deptMap[dept] || 0) + 1;
+  });
+
+  return Object.keys(deptMap).map(dept => ({
+    name: dept,
+    customers: deptMap[dept]
+  }));
+};
+
+
+  const orderData = 
+    getMonthlyOrders();
+  
+
+  const revenueData = getMonthlyRevenue();
+
+  const customerLocationData = getCustomerDepartments();
+
+  console.log("Customer Location Data:", customerLocationData);
 
   const customerInfoData = [
-    { name: "Regular", value: 500 },
-    { name: "New", value: 200 },
+    { name: "Regular", value: 10 },
+    { name: "New", value: 5 },
   ];
 
   const COLORS = ["#FFBB28", "#FF8042", "#00C49F", "#0088FE"];
@@ -39,16 +130,16 @@ const AdminDashboard = () => {
       <main className="flex-1">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2">
           <button className="bg-orange-500 rounded-lg text-center text-white shadow font-bold text-md p-2 hover:bg-orange-600">
-            Total Orders <br />190
+            Total Orders <br />{totalOrders}
           </button>
           <button className="bg-red-500 rounded-lg text-center text-white shadow font-bold text-md p-2 hover:bg-red-600">
-            Total Menu <br />507
+          Total Customers<br />{customerSet}
           </button>
           <button className="bg-orange-400 rounded-lg text-center text-white shadow font-bold text-md p-2 hover:bg-orange-500">
-            Total Customers<br />9040
+            Today Sale <br />{todaySales}
           </button>
           <button className="bg-orange-600 rounded-lg text-center text-white shadow font-bold text-md p-2 hover:bg-orange-700">
-            Total Revenue <br />₹9040
+            Total Revenue <br />₹{totalRevenue}
           </button>
         </div>
 
