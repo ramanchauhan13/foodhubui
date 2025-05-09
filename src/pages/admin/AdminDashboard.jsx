@@ -136,7 +136,7 @@ const getCustomerDepartments = () => {
           Total Customers<br />{customerSet}
           </button>
           <button className="bg-orange-400 rounded-lg text-center text-white shadow font-bold text-md p-2 hover:bg-orange-500">
-            Today Sale <br />{todaySales}
+            Today Sale <br />₹{todaySales}
           </button>
           <button className="bg-orange-600 rounded-lg text-center text-white shadow font-bold text-md p-2 hover:bg-orange-700">
             Total Revenue <br />₹{totalRevenue}
